@@ -1,0 +1,13 @@
+body {
+  min-width: 420px;
+  display: flex;
+  flex-direction: column;
+}
+
+#keywords {
+  min-height: 220px;
+}
+
+#ignoreUrls {
+  min-height: 220px;
+}

@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Keyword Highlighter",
+  "version": "1.0",
+  "description": "Highlighting the list of saved keywords",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "matches": ["<all_urls>"],
+      "js": ["hili.js", "content.js"],
+      "css": ["hili.css"]
+    }
+  ]
+}

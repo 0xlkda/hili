@@ -1,12 +1,4 @@
-function hili(node) {
-  chrome.storage.sync.get("keywords", Hili.mark(node))
-}
-
-function clear_hili(node) {
-  chrome.storage.sync.get("keywords", Hili.clear)
-}
-
-function onDomChanged(callback, targetNode) {
+function onDomChanged(targetNode, callback) {
   const config = { attributes: false, childList: true, subtree: true }
   const observer = new MutationObserver((mutationList, observer) => {
     for (const mutation of mutationList) {
@@ -18,6 +10,7 @@ function onDomChanged(callback, targetNode) {
     }
   })
   observer.observe(targetNode, config)
+  return observer
 }
 
 function onKeywordsSaved(callback) {
@@ -26,21 +19,24 @@ function onKeywordsSaved(callback) {
   })
 }
 
-// Hi buddy!
-chrome.storage.sync.get("ignoreUrls", ({ ignoreUrls }) => {
+function highlight({ ignoreUrls, keywords, mode }) {
   const currentUrl = window.location.href
-  const shouldIgnore = (url) =>
-    ignoreUrls.some((regexString) => {
-      const regex = new RegExp(regexString)
-      return regex.test(url)
-    })
+  const shouldIgnore = (url) => ignoreUrls.some((regexString) => new RegExp(regexString).test(url))
   if (shouldIgnore(currentUrl)) return
 
-  var target = document.body
+  const target = document.body
+  const hili = (target) => Hili[mode](target)({ keywords })
+  const clear = () => Hili.clear()
+
+  clear()
   hili(target)
-  onDomChanged((node) => hili(node), target)
-  onKeywordsSaved(() => {
-    clear_hili(target)
-    hili(target)
-  })
-})
+  onDomChanged(target, (node) => hili(node))
+}
+
+function hi() {
+  chrome.storage.sync.get(["ignoreUrls", "keywords", "mode"], highlight)
+}
+
+// Hi buddy!
+hi()
+onKeywordsSaved(() => hi())

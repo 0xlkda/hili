@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Keyword Highlighter</title>
+  <title>Your Keywords</title>
   <script src="popup.js" defer></script>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <h1>Keyword Highlighter</h1>
+  <h1 id="hili-heading">Keywords
+    <form id="mode">
+      <label>
+        <input type="radio" name="mode" value="mark" checked>
+        Highlighted
+      </label>
+      <label>
+        <input type="radio" name="mode" value="hide">
+        Censorered
+      </label>
+    </form>
+  </h1>
   <textarea id="keywords" placeholder="Enter keywords, one per line"></textarea>
   <textarea id="ignoreUrls" placeholder="Enter url to ignore, one per line"></textarea>
   <button id="save">Save</button>

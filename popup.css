@@ -4,10 +4,19 @@ body {
   flex-direction: column;
 }
 
+h1#hili-heading {
+  font-size: medium;
+}
+
+form#mode {
+  display: inline;
+  float: right;
+}
+
 #keywords {
-  min-height: 220px;
+  min-height: 200px;
 }
 
 #ignoreUrls {
-  min-height: 220px;
+  min-height: 200px;
 }

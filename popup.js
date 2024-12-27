@@ -3,6 +3,13 @@ var ChromeStorage = {
   load: (data, callback) => chrome.storage.sync.get(data, callback),
 }
 
+chrome.storage.sync.get("mode", ({ mode }) => {
+  const radios = document.querySelectorAll('input[name="mode"]')
+  radios.forEach(radio => {
+    radio.checked = radio.value === mode
+  })
+})
+
 chrome.storage.sync.get("keywords", ({ keywords }) => {
   if (!keywords?.length) return
   document.getElementById("keywords").value = keywords.join("\n")
@@ -14,6 +21,9 @@ chrome.storage.sync.get("ignoreUrls", ({ ignoreUrls }) => {
 })
 
 document.getElementById("save").addEventListener("click", () => {
+  const modeData = new FormData(document.getElementById("mode"))
+  const mode = modeData.get('mode')
+
   const keywords = document
     .getElementById("keywords")
     .value.split("\n")
@@ -24,7 +34,7 @@ document.getElementById("save").addEventListener("click", () => {
     .value.split("\n")
     .filter(Boolean)
 
-  ChromeStorage.save({ keywords, ignoreUrls }, async () => {
+  ChromeStorage.save({ keywords, ignoreUrls, mode }, async () => {
     const [tab] = await chrome.tabs.query({
       active: true,
       lastFocusedWindow: true,

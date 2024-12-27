@@ -2,21 +2,25 @@ body {
   min-width: 420px;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
 }
 
-h1#hili-heading {
+#hili-heading {
   font-size: medium;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
-form#mode {
-  display: inline;
-  float: right;
+#hili-heading h1 {
+  flex: 1;
 }
 
-#keywords {
-  min-height: 200px;
+#highlighted,
+#censored {
+  min-height: 150px;
 }
 
 #ignoreUrls {
-  min-height: 200px;
+  min-height: 100px;
 }

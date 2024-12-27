@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Playground</title>
+    <style>
+      body {
+        display: flex;
+      }
+
+      #ORIGIN,
+      #Walker,
+      #NativeWalker {
+        min-width: 420px;
+      }
+
+      canvas, video { 
+        max-width: 100px;
+        max-height: 100px;
+      }
+
+      mark.hide {
+        display: none;
+      }
+    </style>
+    <script src="hili.js"></script>
+    <script src="test.js" defer></script>
+  </head>
+  <body>
+    <div id="ORIGIN">
+      <div><h1>ORIGIN</h1></div>
+      <div><html>html: Keyword</html></div>
+      <div><a href="#">a: Keyword</a></div>
+      <div><abbr>abbr: Keyword</abbr></div>
+      <div><address>address: Keyword</address></div>
+      <div><area>area: Keyword</area></div>
+      <div><article>article: Keyword</article></div>
+      <div><aside>aside: Keyword</aside></div>
+      <div><audio>audio: Keyword</audio></div>
+      <div><em>em: Keyword</em></div>
+      <div><strong>strong: Keyword</strong></div>
+      <div><base>base: Keyword</base></div>
+      <div><bdi>bdi: Keyword</bdi></div>
+      <div><bdo>bdo: Keyword</bdo></div>
+      <div><blockquote>blockquote: Keyword</blockquote></div>
+      <div><body>body: Keyword</body></div>
+      <div><button>button: Keyword</button></div>
+      <div><canvas>canvas: Keyword</canvas></div>
+      <div><caption>caption: Keyword</caption></div>
+      <div><table>table: Keyword</table></div>
+      <div><cite>cite: Keyword</cite></div>
+      <div><samp>samp: Keyword</samp></div>
+      <div><kbd>kbd: Keyword</kbd></div>
+      <div><col>col: Keyword</col></div>
+      <div><colgroup>colgroup: Keyword</colgroup></div>
+      <div><data>data: Keyword</data></div>
+      <div><datalist>datalist: Keyword</datalist></div>
+      <div><input>input: Keyword</input></div>
+      <div><dd>dd: Keyword</dd></div>
+      <div><dt>dt: Keyword</dt></div>
+      <div><dl>dl: Keyword</dl></div>
+      <div><del>del: Keyword</del></div>
+      <div><details>details: Keyword</details></div>
+      <div><dfn>dfn: Keyword</dfn></div>
+      <div><dialog>dialog: Keyword</dialog></div>
+      <div><div>div: Keyword</div></div>
+      <div><embed>embed: Keyword</embed></div>
+      <div><fieldset>fieldset: Keyword</fieldset></div>
+      <div><figure>figure: Keyword</figure></div>
+      <div><footer>footer: Keyword</footer></div>
+      <div><form>form: Keyword</form></div>
+      <div><h1>h1: Keyword</h1></div>
+      <div><h2>h2: Keyword</h2></div>
+      <div><h3>h3: Keyword</h3></div>
+      <div><h4>h4: Keyword</h4></div>
+      <div><h5>h5: Keyword</h5></div>
+      <div><h6>h6: Keyword</h6></div>
+      <div><head>head: Keyword</head></div>
+      <div><header>header: Keyword</header></div>
+      <div><hgroup>hgroup: Keyword</hgroup></div>
+      <div><hr>hr: Keyword</hr></div>
+      <div><i>i: Keyword</i></div>
+      <div><iframe>iframe: Keyword</iframe></div>
+      <div><img>img: Keyword</img></div>
+      <div><ins>ins: Keyword</ins></div>
+      <div><keygen>keygen: Keyword</keygen></div>
+      <div><label>label: Keyword</label></div>
+      <div><legend>legend: Keyword</legend></div>
+      <div><li>li: Keyword</li></div>
+      <div><ol>ol: Keyword</ol></div>
+      <div><ul>ul: Keyword</ul></div>
+      <div><link>link: Keyword</link></div>
+      <div><main>main: Keyword</main></div>
+      <div><map>map: Keyword</map></div>
+      <div><mark>mark: Keyword</mark></div>
+      <div><menu>menu: Keyword</menu></div>
+      <div><menuitem>menuitem: Keyword</menuitem></div>
+      <div><meta>meta: Keyword</meta></div>
+      <div><meter>meter: Keyword</meter></div>
+      <div><nav>nav: Keyword</nav></div>
+      <div><noscript>noscript: Keyword</noscript></div>
+      <div><object>object: Keyword</object></div>
+      <div><optgroup>optgroup: Keyword</optgroup></div>
+      <div><option>option: Keyword</option></div>
+      <div><select>select: Keyword</select></div>
+      <div><output>output: Keyword</output></div>
+      <div><p>p: Keyword</p></div>
+      <div><param>param: Keyword</param></div>
+      <div><pre>pre: Keyword</pre></div>
+      <div><progress>progress: Keyword</progress></div>
+      <div><q>q: Keyword</q></div>
+      <div><rb>rb: Keyword</rb></div>
+      <div><rp>rp: Keyword</rp></div>
+      <div><rt>rt: Keyword</rt></div>
+      <div><rtc>rtc: Keyword</rtc></div>
+      <div><ruby>ruby: Keyword</ruby></div>
+      <div><s>s: Keyword</s></div>
+      <div><script>function name() { return 'script: Keyword'} </script></div>
+      <div><section>section: Keyword</section></div>
+      <div><small>small: Keyword</small></div>
+      <div><source>source: Keyword</source></div>
+      <div><video>video: Keyword</video></div>
+      <div><span>span: Keyword</span></div>
+      <div><style>style: Keyword</style></div>
+      <div><sub>sub: Keyword</sub></div>
+      <div><sup>sup: Keyword</sup></div>
+      <div><summary>summary: Keyword</summary></div>
+      <div><tbody>tbody: Keyword</tbody></div>
+      <div><td>td: Keyword</td></div>
+      <div><template>template: Keyword</template></div>
+      <div><textarea>textarea: Keyword</textarea></div>
+      <div><tfoot>tfoot: Keyword</tfoot></div>
+      <div><th>th: Keyword</th></div>
+      <div><thead>thead: Keyword</thead></div>
+      <div><time>time: Keyword</time></div>
+      <div><tr>tr: Keyword</tr></div>
+      <div><track>track: Keyword</track></div>
+      <div><u>u: Keyword</u></div>
+      <div><var>var: Keyword</var></div>
+      <div>
+        <ul>
+        <li>
+          <ul>
+            <li>Keyword</li>
+            <li>Keyword</li>
+          </ul>
+          <ul>
+            <li>Keyword</li>
+            <li>
+              <ul>
+                <li>Keyword</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>Keyword</li>
+            <li>Keyword</li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div id="Walker">
+      <div><h1>Walker</h1></div>
+      <div><html>html: Keyword</html></div>
+      <div><a href="#">a: Keyword</a></div>
+      <div><abbr>abbr: Keyword</abbr></div>
+      <div><address>address: Keyword</address></div>
+      <div><area>area: Keyword</area></div>
+      <div><article>article: Keyword</article></div>
+      <div><aside>aside: Keyword</aside></div>
+      <div><audio>audio: Keyword</audio></div>
+      <div><em>em: Keyword</em></div>
+      <div><strong>strong: Keyword</strong></div>
+      <div><base>base: Keyword</base></div>
+      <div><bdi>bdi: Keyword</bdi></div>
+      <div><bdo>bdo: Keyword</bdo></div>
+      <div><blockquote>blockquote: Keyword</blockquote></div>
+      <div><body>body: Keyword</body></div>
+      <div><button>button: Keyword</button></div>
+      <div><canvas>canvas: Keyword</canvas></div>
+      <div><caption>caption: Keyword</caption></div>
+      <div><table>table: Keyword</table></div>
+      <div><cite>cite: Keyword</cite></div>
+      <div><samp>samp: Keyword</samp></div>
+      <div><kbd>kbd: Keyword</kbd></div>
+      <div><col>col: Keyword</col></div>
+      <div><colgroup>colgroup: Keyword</colgroup></div>
+      <div><data>data: Keyword</data></div>
+      <div><datalist>datalist: Keyword</datalist></div>
+      <div><input>input: Keyword</input></div>
+      <div><dd>dd: Keyword</dd></div>
+      <div><dt>dt: Keyword</dt></div>
+      <div><dl>dl: Keyword</dl></div>
+      <div><del>del: Keyword</del></div>
+      <div><details>details: Keyword</details></div>
+      <div><dfn>dfn: Keyword</dfn></div>
+      <div><dialog>dialog: Keyword</dialog></div>
+      <div><div>div: Keyword</div></div>
+      <div><embed>embed: Keyword</embed></div>
+      <div><fieldset>fieldset: Keyword</fieldset></div>
+      <div><figure>figure: Keyword</figure></div>
+      <div><footer>footer: Keyword</footer></div>
+      <div><form>form: Keyword</form></div>
+      <div><h1>h1: Keyword</h1></div>
+      <div><h2>h2: Keyword</h2></div>
+      <div><h3>h3: Keyword</h3></div>
+      <div><h4>h4: Keyword</h4></div>
+      <div><h5>h5: Keyword</h5></div>
+      <div><h6>h6: Keyword</h6></div>
+      <div><head>head: Keyword</head></div>
+      <div><header>header: Keyword</header></div>
+      <div><hgroup>hgroup: Keyword</hgroup></div>
+      <div><hr>hr: Keyword</hr></div>
+      <div><i>i: Keyword</i></div>
+      <div><iframe>iframe: Keyword</iframe></div>
+      <div><img>img: Keyword</img></div>
+      <div><ins>ins: Keyword</ins></div>
+      <div><keygen>keygen: Keyword</keygen></div>
+      <div><label>label: Keyword</label></div>
+      <div><legend>legend: Keyword</legend></div>
+      <div><li>li: Keyword</li></div>
+      <div><ol>ol: Keyword</ol></div>
+      <div><ul>ul: Keyword</ul></div>
+      <div><link>link: Keyword</link></div>
+      <div><main>main: Keyword</main></div>
+      <div><map>map: Keyword</map></div>
+      <div><mark>mark: Keyword</mark></div>
+      <div><menu>menu: Keyword</menu></div>
+      <div><menuitem>menuitem: Keyword</menuitem></div>
+      <div><meta>meta: Keyword</meta></div>
+      <div><meter>meter: Keyword</meter></div>
+      <div><nav>nav: Keyword</nav></div>
+      <div><noscript>noscript: Keyword</noscript></div>
+      <div><object>object: Keyword</object></div>
+      <div><optgroup>optgroup: Keyword</optgroup></div>
+      <div><option>option: Keyword</option></div>
+      <div><select>select: Keyword</select></div>
+      <div><output>output: Keyword</output></div>
+      <div><p>p: Keyword</p></div>
+      <div><param>param: Keyword</param></div>
+      <div><pre>pre: Keyword</pre></div>
+      <div><progress>progress: Keyword</progress></div>
+      <div><q>q: Keyword</q></div>
+      <div><rb>rb: Keyword</rb></div>
+      <div><rp>rp: Keyword</rp></div>
+      <div><rt>rt: Keyword</rt></div>
+      <div><rtc>rtc: Keyword</rtc></div>
+      <div><ruby>ruby: Keyword</ruby></div>
+      <div><s>s: Keyword</s></div>
+      <div><script>function name() { return 'script: Keyword'} </script></div>
+      <div><section>section: Keyword</section></div>
+      <div><small>small: Keyword</small></div>
+      <div><source>source: Keyword</source></div>
+      <div><video>video: Keyword</video></div>
+      <div><span>span: Keyword</span></div>
+      <div><style>style: Keyword</style></div>
+      <div><sub>sub: Keyword</sub></div>
+      <div><sup>sup: Keyword</sup></div>
+      <div><summary>summary: Keyword</summary></div>
+      <div><tbody>tbody: Keyword</tbody></div>
+      <div><td>td: Keyword</td></div>
+      <div><template>template: Keyword</template></div>
+      <div><textarea>textarea: Keyword</textarea></div>
+      <div><tfoot>tfoot: Keyword</tfoot></div>
+      <div><th>th: Keyword</th></div>
+      <div><thead>thead: Keyword</thead></div>
+      <div><time>time: Keyword</time></div>
+      <div><tr>tr: Keyword</tr></div>
+      <div><track>track: Keyword</track></div>
+      <div><u>u: Keyword</u></div>
+      <div><var>var: Keyword</var></div>
+      <div>
+        <ul>
+        <li>
+          <ul>
+            <li>Keyword</li>
+            <li>Keyword</li>
+          </ul>
+          <ul>
+            <li>Keyword</li>
+            <li>
+              <ul>
+                <li>Keyword</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>Keyword</li>
+            <li>Keyword</li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div id="NativeWalker">
+      <div><h1>NativeWalker</h1></div>
+      <div><html>html: Keyword</html></div>
+      <div><a href="#">a: Keyword</a></div>
+      <div><abbr>abbr: Keyword</abbr></div>
+      <div><address>address: Keyword</address></div>
+      <div><area>area: Keyword</area></div>
+      <div><article>article: Keyword</article></div>
+      <div><aside>aside: Keyword</aside></div>
+      <div><audio>audio: Keyword</audio></div>
+      <div><em>em: Keyword</em></div>
+      <div><strong>strong: Keyword</strong></div>
+      <div><base>base: Keyword</base></div>
+      <div><bdi>bdi: Keyword</bdi></div>
+      <div><bdo>bdo: Keyword</bdo></div>
+      <div><blockquote>blockquote: Keyword</blockquote></div>
+      <div><body>body: Keyword</body></div>
+      <div><button>button: Keyword</button></div>
+      <div><canvas>canvas: Keyword</canvas></div>
+      <div><caption>caption: Keyword</caption></div>
+      <div><table>table: Keyword</table></div>
+      <div><cite>cite: Keyword</cite></div>
+      <div><samp>samp: Keyword</samp></div>
+      <div><kbd>kbd: Keyword</kbd></div>
+      <div><col>col: Keyword</col></div>
+      <div><colgroup>colgroup: Keyword</colgroup></div>
+      <div><data>data: Keyword</data></div>
+      <div><datalist>datalist: Keyword</datalist></div>
+      <div><input>input: Keyword</input></div>
+      <div><dd>dd: Keyword</dd></div>
+      <div><dt>dt: Keyword</dt></div>
+      <div><dl>dl: Keyword</dl></div>
+      <div><del>del: Keyword</del></div>
+      <div><details>details: Keyword</details></div>
+      <div><dfn>dfn: Keyword</dfn></div>
+      <div><dialog>dialog: Keyword</dialog></div>
+      <div><div>div: Keyword</div></div>
+      <div><embed>embed: Keyword</embed></div>
+      <div><fieldset>fieldset: Keyword</fieldset></div>
+      <div><figure>figure: Keyword</figure></div>
+      <div><footer>footer: Keyword</footer></div>
+      <div><form>form: Keyword</form></div>
+      <div><h1>h1: Keyword</h1></div>
+      <div><h2>h2: Keyword</h2></div>
+      <div><h3>h3: Keyword</h3></div>
+      <div><h4>h4: Keyword</h4></div>
+      <div><h5>h5: Keyword</h5></div>
+      <div><h6>h6: Keyword</h6></div>
+      <div><head>head: Keyword</head></div>
+      <div><header>header: Keyword</header></div>
+      <div><hgroup>hgroup: Keyword</hgroup></div>
+      <div><hr>hr: Keyword</hr></div>
+      <div><i>i: Keyword</i></div>
+      <div><iframe>iframe: Keyword</iframe></div>
+      <div><img>img: Keyword</img></div>
+      <div><ins>ins: Keyword</ins></div>
+      <div><keygen>keygen: Keyword</keygen></div>
+      <div><label>label: Keyword</label></div>
+      <div><legend>legend: Keyword</legend></div>
+      <div><li>li: Keyword</li></div>
+      <div><ol>ol: Keyword</ol></div>
+      <div><ul>ul: Keyword</ul></div>
+      <div><link>link: Keyword</link></div>
+      <div><main>main: Keyword</main></div>
+      <div><map>map: Keyword</map></div>
+      <div><mark>mark: Keyword</mark></div>
+      <div><menu>menu: Keyword</menu></div>
+      <div><menuitem>menuitem: Keyword</menuitem></div>
+      <div><meta>meta: Keyword</meta></div>
+      <div><meter>meter: Keyword</meter></div>
+      <div><nav>nav: Keyword</nav></div>
+      <div><noscript>noscript: Keyword</noscript></div>
+      <div><object>object: Keyword</object></div>
+      <div><optgroup>optgroup: Keyword</optgroup></div>
+      <div><option>option: Keyword</option></div>
+      <div><select>select: Keyword</select></div>
+      <div><output>output: Keyword</output></div>
+      <div><p>p: Keyword</p></div>
+      <div><param>param: Keyword</param></div>
+      <div><pre>pre: Keyword</pre></div>
+      <div><progress>progress: Keyword</progress></div>
+      <div><q>q: Keyword</q></div>
+      <div><rb>rb: Keyword</rb></div>
+      <div><rp>rp: Keyword</rp></div>
+      <div><rt>rt: Keyword</rt></div>
+      <div><rtc>rtc: Keyword</rtc></div>
+      <div><ruby>ruby: Keyword</ruby></div>
+      <div><s>s: Keyword</s></div>
+      <div><script>function name() { return 'script: Keyword'} </script></div>
+      <div><section>section: Keyword</section></div>
+      <div><small>small: Keyword</small></div>
+      <div><source>source: Keyword</source></div>
+      <div><video>video: Keyword</video></div>
+      <div><span>span: Keyword</span></div>
+      <div><style>style: Keyword</style></div>
+      <div><sub>sub: Keyword</sub></div>
+      <div><sup>sup: Keyword</sup></div>
+      <div><summary>summary: Keyword</summary></div>
+      <div><tbody>tbody: Keyword</tbody></div>
+      <div><td>td: Keyword</td></div>
+      <div><template>template: Keyword</template></div>
+      <div><textarea>textarea: Keyword</textarea></div>
+      <div><tfoot>tfoot: Keyword</tfoot></div>
+      <div><th>th: Keyword</th></div>
+      <div><thead>thead: Keyword</thead></div>
+      <div><time>time: Keyword</time></div>
+      <div><tr>tr: Keyword</tr></div>
+      <div><track>track: Keyword</track></div>
+      <div><u>u: Keyword</u></div>
+      <div><var>var: Keyword</var></div>
+      <div>
+        <ul>
+        <li>
+          <ul>
+            <li>Keyword</li>
+            <li>Keyword</li>
+          </ul>
+          <ul>
+            <li>Keyword</li>
+            <li>
+              <ul>
+                <li>Keyword</li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+            <li>Keyword</li>
+            <li>Keyword</li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </body>
+</html>

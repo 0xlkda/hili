@@ -6,20 +6,13 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
-  <h1 id="hili-heading">Keywords
-    <form id="mode">
-      <label>
-        <input type="radio" name="mode" value="mark" checked>
-        Highlighted
-      </label>
-      <label>
-        <input type="radio" name="mode" value="hide">
-        Censorered
-      </label>
-    </form>
-  </h1>
-  <textarea id="keywords" placeholder="Enter keywords, one per line"></textarea>
+  <div id="hili-heading">
+    <h1>Patterns</h1>
+    <button id="clear">Clear All</button>
+    <button id="save">Save</button>
+  </div>
+  <textarea id="highlighted" placeholder="Enter highlighted pattern, one per line"></textarea>
+  <textarea id="censored" placeholder="Enter censored pattern, one per line"></textarea>
   <textarea id="ignoreUrls" placeholder="Enter url to ignore, one per line"></textarea>
-  <button id="save">Save</button>
 </body>
 </html>

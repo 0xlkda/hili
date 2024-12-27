@@ -3,42 +3,40 @@ var ChromeStorage = {
   load: (data, callback) => chrome.storage.sync.get(data, callback),
 }
 
-chrome.storage.sync.get("mode", ({ mode }) => {
-  const radios = document.querySelectorAll('input[name="mode"]')
-  radios.forEach(radio => {
-    radio.checked = radio.value === mode
+ChromeStorage.load(["highlighted", "censored", "ignoreUrls"], ({ highlighted, censored, ignoreUrls }) => {
+  if (highlighted?.length) {
+    document.getElementById("highlighted").value = highlighted.join("\n")
+  }
+
+  if (censored?.length) {
+    document.getElementById("censored").value = censored.join("\n")
+  }
+
+  if (ignoreUrls?.length) {
+    document.getElementById("ignoreUrls").value = ignoreUrls.join("\n")
+  }
+})
+
+document.getElementById("clear").addEventListener("click", async () => {
+  const [tab] = await chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true,
   })
-})
 
-chrome.storage.sync.get("keywords", ({ keywords }) => {
-  if (!keywords?.length) return
-  document.getElementById("keywords").value = keywords.join("\n")
-})
-
-chrome.storage.sync.get("ignoreUrls", ({ ignoreUrls }) => {
-  if (!ignoreUrls?.length) return
-  document.getElementById("ignoreUrls").value = ignoreUrls.join("\n")
+  chrome.tabs.sendMessage(tab.id, { hili_clear: true })
 })
 
 document.getElementById("save").addEventListener("click", () => {
-  const modeData = new FormData(document.getElementById("mode"))
-  const mode = modeData.get('mode')
+  let getValues = id => document.getElementById(id).value.split("\n").filter(Boolean)
+  let highlighted = getValues("highlighted")
+  let censored = getValues("censored")
+  let ignoreUrls = getValues("ignoreUrls")
 
-  const keywords = document
-    .getElementById("keywords")
-    .value.split("\n")
-    .filter(Boolean)
-
-  const ignoreUrls = document
-    .getElementById("ignoreUrls")
-    .value.split("\n")
-    .filter(Boolean)
-
-  ChromeStorage.save({ keywords, ignoreUrls, mode }, async () => {
+  ChromeStorage.save({ highlighted, censored, ignoreUrls }, async () => {
     const [tab] = await chrome.tabs.query({
       active: true,
       lastFocusedWindow: true,
     })
-    chrome.tabs.sendMessage(tab.id, { keywords_saved: true })
+    chrome.tabs.sendMessage(tab.id, { hili_saved: true })
   })
 })

@@ -4,7 +4,9 @@ let READ_ONLY_NODES = [
   'SCRIPT',
   'NOSCRIPT',
   'STYLE',
-  'MARK'
+  'MARK',
+  'INPUT',
+  'SELECT',
 ]
 
 let ChangableFilter = {

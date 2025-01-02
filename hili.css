@@ -9,7 +9,7 @@ mark#hili.HIGHLIGHT {
 }
 
 mark#hili.CENSORED {
-  filter: blur(2px);
+  filter: blur(3px);
   user-select: none !important;
   background: transparent !important;
   background-color: transparent !important;

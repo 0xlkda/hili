@@ -1,0 +1,8 @@
+:root {
+  --border-color: lightgray;
+
+  --spacing: 1rem;
+  --popup-min-width: 420px;
+  --ignore-urls-min-height: 100px;
+  --pattern-input-min-height: 320px;
+}

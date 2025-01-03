@@ -1,0 +1,32 @@
+.tabs {
+}
+
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tabs label {
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: var(--spacing);
+}
+
+.tabs label:not(:first-of-type) {
+  margin-left: var(--spacing);
+}
+
+
+.tab-content {
+  display: none;
+}
+
+#tab1:checked ~ .content1,
+#tab2:checked ~ .content2 {
+  display: block;
+}
+
+#tab1:checked + label[for="tab1"],
+#tab2:checked + label[for="tab2"] {
+  position: relative;
+  font-weight: bold;
+}

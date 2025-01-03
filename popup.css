@@ -1,15 +1,21 @@
+* {
+  box-sizing: border-box;
+  border-color: var(--border-color);
+}
+
 body {
-  min-width: 420px;
+  min-width: var(--popup-min-width);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing);
+  padding: var(--spacing);
 }
 
 #hili-heading {
-  font-size: medium;
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing);
   align-items: center;
+  font-size: x-large;
 }
 
 #hili-heading h1 {
@@ -18,9 +24,10 @@ body {
 
 #highlighted,
 #censored {
-  min-height: 150px;
+  width: 100%;
+  min-height: var(--pattern-input-min-height);
 }
 
 #ignoreUrls {
-  min-height: 100px;
+  min-height: var(--ignore-urls-min-height);
 }

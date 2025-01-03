@@ -1,36 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Your Keywords</title>
-  <script src="popup.js" defer></script>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="variables.css">
-  <link rel="stylesheet" href="popup.css" />
-  <link rel="stylesheet" href="tabs.css" />
-</head>
-<body>
-  <div id="hili-heading">
-    <h1>Patterns</h1>
-    <button id="clear">Clear All</button>
-    <button id="save">Save</button>
-  </div>
-
-  <div class="tabs">
-    <input type="radio" name="tabs" id="tab1" checked>
-    <label for="tab1">Highlighted</label>
-
-    <input type="radio" name="tabs" id="tab2">
-    <label for="tab2">Censored</label>
-
-    <div class="tab-content content1">
-      <textarea id="highlighted" placeholder="Enter highlighted pattern, one per line"></textarea>
+  <head>
+    <title>Your Keywords</title>
+    <script src="popup.js" defer></script>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="tabs.css" />
+  </head>
+  <body>
+    <div id="hili-heading">
+      <h1>Patterns</h1>
+      <button id="clear">Clear All</button>
+      <button id="save">Save</button>
     </div>
 
-    <div class="tab-content content2">
-      <textarea id="censored" placeholder="Enter censored pattern, one per line"></textarea>
-    </div>
-  </div>
+    <div class="tabs">
+      <input type="radio" name="tabs" id="tab1" checked>
+      <label for="tab1">Highlighted</label>
 
-  <textarea id="ignoreUrls" placeholder="Enter url to ignore, one per line"></textarea>
-</body>
+      <input type="radio" name="tabs" id="tab2">
+      <label for="tab2">Censored</label>
+
+      <div class="tab-content content1">
+        <textarea id="highlighted" placeholder="Enter highlighted pattern, one per line"></textarea>
+      </div>
+
+      <div class="tab-content content2">
+        <textarea id="censored" placeholder="Enter censored pattern, one per line"></textarea>
+      </div>
+    </div>
+
+    <textarea id="ignoreUrls" placeholder="Enter url to ignore, one per line"></textarea>
+  </body>
 </html>

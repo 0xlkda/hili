@@ -60,5 +60,5 @@ let Hili = {
   },
   mark: (node, { transform }) => {
     TransformWalker({ transform }).walk(node)
-  }
+  },
 }

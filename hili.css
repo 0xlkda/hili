@@ -1,3 +1,13 @@
+::highlight(hili-highlight) {
+  color: black;
+  background-color: yellow;
+}
+
+::highlight(hili-censored) {
+  color: transparent;
+  background-color: transparent;
+}
+
 mark#hili {
   background: unset !important;
   background-color: unset !important;

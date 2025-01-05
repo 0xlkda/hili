@@ -1,6 +1,7 @@
 let READ_ONLY_NODES = [
   'HEAD',
   'META',
+  'COMMENT',
   'SCRIPT',
   'NOSCRIPT',
   'STYLE',
@@ -48,15 +49,19 @@ let TransformWalker = ({ transform }) => {
   return { walk }
 }
 
+let highlight = new Highlight()
+CSS.highlights.set("hili-highlight", highlight)
+
+let censored = new Highlight()
+CSS.highlights.set("hili-censored", censored)
+
 let Hili = {
-  clearAll: () => {
-    const marks = document.querySelectorAll('mark#hili')
-    marks.forEach((node) => Hili.clear(node))
-  },
-  clear: (node) => {
-    let parent = node.parentNode
-    node.replaceWith(node.textContent)
-    parent?.normalize()
+  highlight,
+  censored,
+
+  clear: () => {
+    highlight.clear()
+    censored.clear()
   },
   mark: (node, { transform }) => {
     TransformWalker({ transform }).walk(node)

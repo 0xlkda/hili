@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Keywords Highlighter / Censored",
-  "version": "1.3",
+  "version": "1.4",
   "description": "Highlighting or Censoring the list of saved keywords",
   "permissions": ["storage"],
   "host_permissions": ["<all_urls>"],

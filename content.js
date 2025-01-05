@@ -1,11 +1,19 @@
-function onNewNodeAdded(targetNode, callback) {
+const NOOP = void 0
+const CLONE_DEEP = (node) => node.cloneNode(true)
+
+function onNodeMutated(targetNode, { added, removed }) {
   const config = { subtree: true, childList: true }
   const observer = new MutationObserver((mutationList) => {
     for (const mutation of mutationList) {
       if (mutation.type === "childList") {
         for (const node of mutation.addedNodes) { 
-          if (node.getRootNode() !== document) continue;
-          callback(node)
+          if (node.getRootNode() !== document) continue
+          added(node)
+        }
+
+        for (const node of mutation.removedNodes) { 
+          if (node.getRootNode() !== document) continue
+          removed(node)
         }
       }
     }
@@ -26,40 +34,48 @@ function onSaved(callback) {
   })
 }
 
-const NOOP = void 0
-const CLONE_DEEP = (node) => node.cloneNode(true)
-const HIGHLIGHT = (match) => `<mark id="hili" class="HIGHLIGHT">${match}</mark>`
-const CENSORED = (match) => `<mark id="hili" class="CENSORED">${match}</mark>`
-
-const MODES = {
-  mark: HIGHLIGHT,
-  hide: CENSORED
-}
-
 function createFragment(html) {
   return document.createRange().createContextualFragment(html)
 }
     
 function hili(node) {
   chrome.storage.sync.get(["ignoreUrls", "highlighted", "censored"], ({ ignoreUrls, highlighted, censored }) => {
-    const match = url => pattern => RegExp(pattern).test(url)
-    const IGNORED = ignoreUrls.some(match(window.location.href))
-    const HIGHLIGHTED_REGEX = new RegExp(`(${highlighted.join('|')})`, 'gi')
-    const CENSORED_REGEX = new RegExp(`(${censored.join('|')})`, 'gi')
+    let match = url => pattern => RegExp(pattern).test(url)
+    let IGNORED = ignoreUrls.some(match(window.location.href))
+    let HIGHLIGHTED_REGEX = new RegExp(`(${highlighted.join('|')})`, 'gi')
+    let CENSORED_REGEX = new RegExp(`(${censored.join('|')})`, 'gi')
+
+    function makeRanges(regexExec) {
+      let ranges = new Set()
+
+      while (match = regexExec()) {
+        let startIndex = match.index
+        let endIndex = startIndex + match[0].length
+
+        if (startIndex >= 0) {
+          let range = new Range()
+          range.applyTo = (node) => {
+            range.setStart(node, startIndex)
+            range.setEnd(node, endIndex)
+          }
+          ranges.add(range)
+        }
+      }
+
+      return ranges
+    }
 
     function transform(node, originHTML) {
       let oldHTML = node.nodeValue
 
-      if (HIGHLIGHTED_REGEX.test(oldHTML)) {
-        let newHTML = oldHTML.replaceAll(HIGHLIGHTED_REGEX, HIGHLIGHT)
-        let fragment = createFragment(newHTML)
-        node.replaceWith(fragment)
+      for (const range of makeRanges(() => HIGHLIGHTED_REGEX.exec(oldHTML))) {
+        range.applyTo(node)
+        Hili.highlight.add(range)
       }
-      
-      if (CENSORED_REGEX.test(oldHTML)) {
-        let newHTML = oldHTML.replaceAll(CENSORED_REGEX, CENSORED)
-        let fragment = createFragment(newHTML)
-        node.replaceWith(fragment)
+
+      for (const range of makeRanges(() => CENSORED_REGEX.exec(oldHTML))) {
+        range.applyTo(node)
+        Hili.censored.add(range)
       }
     }
 
@@ -70,11 +86,12 @@ function hili(node) {
 
 // Hi buddy!
 hili(document.body)
-onNewNodeAdded(document.body, (node) => hili(node))
+onClear(() => Hili.clear())
 onSaved(() => {
-  Hili.clearAll()
+  Hili.clear()
   hili(document.body)
 })
-onClear(() => {
-  Hili.clearAll()
+onNodeMutated(document.body, { 
+  added: (node) => hili(node),
+  removed: (node) => NOOP
 })

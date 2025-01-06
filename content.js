@@ -42,8 +42,8 @@ function hili(node) {
   chrome.storage.sync.get(["ignoreUrls", "highlighted", "censored"], ({ ignoreUrls, highlighted, censored }) => {
     let match = url => pattern => RegExp(pattern).test(url)
     let IGNORED = ignoreUrls.some(match(window.location.href))
-    let HIGHLIGHTED_REGEX = new RegExp(`(${highlighted.join('|')})`, 'gi')
-    let CENSORED_REGEX = new RegExp(`(${censored.join('|')})`, 'gi')
+    let HIGHLIGHTED_REGEX = new RegExp(`(${highlighted.join('|')})`, 'gui')
+    let CENSORED_REGEX = new RegExp(`(${censored.join('|')})`, 'gui')
 
     function makeRanges(regexExec) {
       let ranges = new Set()

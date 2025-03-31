@@ -1,6 +1,10 @@
+:root {
+  --bright-yellow: #FEF809;
+}
+
 ::highlight(hili-highlight) {
   color: black;
-  background-color: yellow;
+  background-color: var(--bright-yellow);
 }
 
 ::highlight(hili-censored) {
@@ -11,16 +15,4 @@
 mark#hili {
   background: unset !important;
   background-color: unset !important;
-}
-
-mark#hili.HIGHLIGHT {
-  background: yellow !important;
-  background-color: yellow !important;
-}
-
-mark#hili.CENSORED {
-  filter: blur(3px);
-  user-select: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
 }
